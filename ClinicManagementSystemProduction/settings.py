@@ -122,7 +122,7 @@ STATIC_URL = "/static/"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-CSRF_TRUSTED_ORIGINS = ["https://cms-django.azurewebsites.net", "https://www.cms-django.azurewebsites.net"]
+CSRF_TRUSTED_ORIGINS = ["https://cms-django-test.azurewebsites.net", "https://www.cms-django-test.azurewebsites.net"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
