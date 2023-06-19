@@ -328,8 +328,7 @@ def validate_otp(request):
 
 
 def personal_details(request):
-    for row in request.session:
-        print(row)
+    print(request.session)
     with open("register.csv", "r") as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
@@ -1239,8 +1238,7 @@ def patient_appointment_homepage(request):
 
 
 def patient_book_appointment(request):
-    for row in request.session:
-        print(row)
+    print(request.session)
     if request.method == "POST":
         olddate = request.POST.get("date").split("-")
         olddate.reverse()
@@ -1606,8 +1604,7 @@ def receptionist_view_local_appointments(request):
 
 
 def patient_view_history(request):
-    for row in request.session:
-        print(row)
+    print(request.session)
     patientid = ""
     patientname = ""
     phonenumber = ""
