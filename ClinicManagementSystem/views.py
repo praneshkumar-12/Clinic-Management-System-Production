@@ -329,9 +329,10 @@ def validate_otp(request):
 
 def personal_details(request):
     with open("register.csv", "r") as csvfile:
+        username = request.session.get("CURRENT_USER")
         reader = csv.reader(csvfile)
         for row in reader:
-            if row[3] == request.session.get("CURRENT_USER"):
+            if row[3] == username:
                 priv = ""
                 if row[-2] == "admin":
                     priv = "Administrator"
@@ -1269,8 +1270,9 @@ def patient_book_appointment(request):
 
     with open("patients.csv") as csvfile:
         reader = csv.reader(csvfile)
+        username = request.session.get("CURRENT_USER")
         for row in reader:
-            if row[3] == request.session.get("CURRENT_USER"):
+            if row[3] == username:
                 data.update({
                     "name": row[0],
                     "uniqueid": row[-1],
@@ -1308,8 +1310,9 @@ def view_timeslots(request, data=None):
         name = ""
         with open("patients.csv") as csvfile:
             reader = csv.reader(csvfile)
+            username = request.session.get("CURRENT_USER")
             for row in reader:
-                if row[3] == request.session.get("CURRENT_USER"):
+                if row[3] == username:
                     name = row[0]
                     break
         subject = "Appointment confirmation"
@@ -1395,8 +1398,9 @@ def patient_appointment_history(request):
     patient_name = ""
     with open("patients.csv") as csvfile:
         reader = csv.reader(csvfile)
+        username = request.session.get("CURRENT_USER")
         for row in reader:
-            if row[3] == request.session.get("CURRENT_USER"):
+            if row[3] == username:
                 patient_id = row[-1]
                 patient_name = row[0]
 
@@ -1476,8 +1480,9 @@ def doctor_appointment_history(request):
     doctor_name = ""
     with open("doctors.csv") as csvfile:
         reader = csv.reader(csvfile)
+        username = request.session.get("CURRENT_USER")
         for row in reader:
-            if row[3] == request.session.get("CURRENT_USER"):
+            if row[3] == username:
                 doctor_id = row[-1]
                 doctor_name = row[0]
 
@@ -1644,7 +1649,7 @@ def patient_view_history(request):
     with open("patients.csv") as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
-            if row[3] == request.session.get("CURRENT_USER"):
+            if row[3] == username:
                 patientid = row[-1]
                 patientname = row[0]
     
@@ -1780,10 +1785,12 @@ def patient_view_payments(request):
 
     transactiondatas = []
 
+    username = request.session.get("CURRENT_USER")
+
     with open("transactions.csv") as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
-            if row[2] == request.session.get("CURRENT_USER"):
+            if row[2] == username:
                 transactiondatas.append(
                     TransactionData(row[0], row[1], row[2], row[3], row[4], row[5])
                 )
