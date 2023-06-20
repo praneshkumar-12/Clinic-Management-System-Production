@@ -1137,7 +1137,7 @@ def receptionist_time_slot(request):
         date = date[:-1]
         oldtimeslot = request.POST.getlist("slots")
 
-        timeslot = List()
+        timeslot = List(5)
         for t in oldtimeslot:
             timeslot.append(slot_dict.get(t))
 
