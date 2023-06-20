@@ -36,10 +36,10 @@ def timeslotgenerator(docterid, date, timeslot):
     if str(docterid) not in dictionary:
         binloc = BST()
         mid = len(timeslot)//2
-        median = (timeslot[mid] + timeslot[~mid]) // 2
-        binloc.insert(median)
-        print(median)
-        timeslot.remove(median)
+        res = timeslot[mid]
+        binloc.insert(res)
+        print(mid, res)
+        timeslot.remove(res)
         for i in timeslot:
             binloc.insert(i)
         temp = {}
@@ -52,10 +52,10 @@ def timeslotgenerator(docterid, date, timeslot):
         dates = dictionary.get(str(docterid))
         binloc = BST()
         mid = len(timeslot)//2
-        median = (timeslot[mid] + timeslot[~mid]) // 2
-        binloc.insert(median)
-        print(median)
-        timeslot.remove(median)
+        res = timeslot[mid]
+        binloc.insert(res)
+        print(mid, res)
+        timeslot.remove(res)
         for i in timeslot:
             binloc.insert(i)
         val = serialize_bst(binloc.root)
