@@ -35,7 +35,6 @@ def timeslotgenerator(docterid, date, timeslot):
     # if docterid is not available then a new dictionary is created
     if str(docterid) not in dictionary:
         binloc = BST()
-        timeslot.sort()
         mid = len(timeslot)//2
         median = (timeslot[mid] + timeslot[~mid]) // 2
         binloc.insert(median)
@@ -52,7 +51,6 @@ def timeslotgenerator(docterid, date, timeslot):
     else:
         dates = dictionary.get(str(docterid))
         binloc = BST()
-        timeslot.sort()
         mid = len(timeslot)//2
         median = (timeslot[mid] + timeslot[~mid]) // 2
         binloc.insert(median)

@@ -78,6 +78,8 @@ class List:
         Raises:
             IndexError: If the index is out of bounds.
         """
+        if idx < 0:
+            idx = len(self.list) + idx
         if idx >= self.n:
             raise IndexError("List index out of bound")
         return self.list[idx]
@@ -93,6 +95,8 @@ class List:
         Raises:
             IndexError: If the index is out of bounds.
         """
+        if idx < 0:
+            idx = len(self.list) + idx
         if idx >= self.n:
             raise IndexError("List index out of bound")
         self.list[idx] = elt
@@ -108,6 +112,8 @@ class List:
         Raises:
             IndexError: If the index is out of bounds.
         """
+        if idx < 0:
+            idx = len(self.list) + idx
         if not 0 <= idx <= self.n:
             raise IndexError("List index out of bound")
         if self.n == self.cap:
@@ -127,6 +133,8 @@ class List:
         Raises:
             IndexError: If the index is out of bounds.
         """
+        if idx < 0:
+            idx = len(self.list) + idx
         if not 0 <= idx < self.n:
             raise IndexError("List index out of bound")
         for i in range(idx, self.n - 1):
