@@ -25,6 +25,16 @@ def readjson():
         data = json.load(f)
         return data
 
+def insert_balanced(seq, tree):
+
+    if len(seq) > 0:
+        mid = (len(seq) - 1) // 2
+        tree.insert(seq[mid])    
+
+        insert_balanced(seq[:mid], tree)
+        insert_balanced(seq[mid + 1:], tree)
+
+    return tree
 
 def timeslotgenerator(docterid, date, timeslot):
     """
@@ -35,13 +45,7 @@ def timeslotgenerator(docterid, date, timeslot):
     # if docterid is not available then a new dictionary is created
     if str(docterid) not in dictionary:
         binloc = BST()
-        mid = len(timeslot)//2
-        res = timeslot[mid]
-        binloc.insert(res)
-        print(mid, res)
-        timeslot.remove(res)
-        for i in timeslot:
-            binloc.insert(i)
+        insert_balanced(timeslot, binloc)
         temp = {}
         val = serialize_bst(binloc.root)
         temp[date] = val
@@ -51,13 +55,7 @@ def timeslotgenerator(docterid, date, timeslot):
     else:
         dates = dictionary.get(str(docterid))
         binloc = BST()
-        mid = len(timeslot)//2
-        res = timeslot[mid]
-        binloc.insert(res)
-        print(mid, res)
-        timeslot.remove(res)
-        for i in timeslot:
-            binloc.insert(i)
+        insert_balanced(timeslot, binloc)
         val = serialize_bst(binloc.root)
         dates[date] = val
         # print(dates)
